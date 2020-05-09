@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row my-5 p-5">
+        <div class="media">
+            <img src="{{article.picture}}" class="align-self-center mr-3" alt="picture">
+            <div class="media-body">
+                <h5 class="mt-0">{{article.title}}</h5>
+                <p>{{article.resume}}</p>
+                <p class="my-2">{{article.content}}</p>
+                <small>
+                    {% for tag in article.tags %}
+                        #{{tag.name}} - 
+                    {% endfor %}
+                </small>
+                <hr>
+                <p class="float-left mb-0"><small>- {{article.category}} -</small></p>
+                <p class="float-right mb-0"><small>- {{article.createdAt|date('d/m/Y')}} -</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

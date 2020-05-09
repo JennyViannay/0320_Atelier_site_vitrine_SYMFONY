@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    {% for article in articles|reverse %}
+    <div class="row my-5 p-5">
+        <a href="/read/{{article.id}}">
+            <div class="media">
+                <img src="{{article.picture}}" class="align-self-center mr-3" alt="picture">
+                <div class="media-body">
+                    <h5 class="mt-0">{{article.title}}</h5>
+                    <p>{{article.resume}}</p>
+                    <small>
+                        {% for tag in article.tags %}
+                            #{{tag.name}} - 
+                        {% endfor %}
+                    </small>
+                    <hr>
+                    <p class="float-left mb-0"><small>- {{article.category}} -</small></p>
+                    <p class="float-right mb-0"><small>- {{article.createdAt|date('d/m/Y')}} -</small></p>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
