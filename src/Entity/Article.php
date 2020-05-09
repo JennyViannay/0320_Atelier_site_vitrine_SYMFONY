@@ -55,6 +55,11 @@ class Article
      */
     private $tags;
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+
     public function __construct()
     {
         $this->created_at = new DateTime("now");
