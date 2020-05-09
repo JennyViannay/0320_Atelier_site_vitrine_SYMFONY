@@ -8,7 +8,6 @@ use App\Entity\Comment;
 use App\Entity\Tag;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
-use App\Repository\CommentRepository;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,7 +27,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/", name="articles")
+     * @Route("/articles", name="articles")
      */
     public function index()
     {
