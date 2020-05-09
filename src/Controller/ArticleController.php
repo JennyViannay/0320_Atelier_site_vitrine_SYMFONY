@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Tag;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -14,10 +16,12 @@ class ArticleController extends AbstractController
     /* INJECTION DE DEPENDANCE*/
     private $repo;
     private $categoryRepository;
+    private $tagRepository;
 
-    public function __construct(ArticleRepository $repo, CategoryRepository $categoryRepository)
+    public function __construct(ArticleRepository $repo, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
         $this->categoryRepository = $categoryRepository;
+        $this->tagRepository = $tagRepository;
         $this->repo = $repo;
     }
 
@@ -54,6 +58,24 @@ class ArticleController extends AbstractController
             'categs' => $this->getCategories(),
             'articles' => $articles
         ]);
+    }
+
+    /**
+     * @Route("/search", name="search-tag")
+     */
+    public function search()
+    {
+        if($_SERVER['REQUEST_METHOD'] === "POST"){
+            $tag = $this->tagRepository->findOneBy(['name' => $_POST['search']]);
+            $articles = [];
+            if($tag){
+                $articles = $tag->getArticles();
+            } 
+            return $this->render('article/index.html.twig', [
+                'categs' => $this->getCategories(),
+                'articles' => $articles
+            ]);
+        }
     }
 
     private function getCategories(){
