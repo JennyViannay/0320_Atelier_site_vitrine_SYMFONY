@@ -63,16 +63,29 @@ class ArticleController extends AbstractController
     }
 
     /**
+     * @Route("/tag/{id}", name="tag")
+     */
+    public function getArticleByTag(Tag $tag)
+    {
+        $articles = $tag->getArticles();
+        
+        return $this->render('article/index.html.twig', [
+            'categs' => $this->getCategories(),
+            'articles' => $articles
+        ]);
+    }
+
+    /**
      * @Route("/search", name="search-tag")
      */
     public function search()
     {
-        if($_SERVER['REQUEST_METHOD'] === "POST"){
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $tag = $this->tagRepository->findOneBy(['name' => $_POST['search']]);
             $articles = [];
-            if($tag){
+            if ($tag) {
                 $articles = $tag->getArticles();
-            } 
+            }
             return $this->render('article/index.html.twig', [
                 'categs' => $this->getCategories(),
                 'articles' => $articles
@@ -86,7 +99,7 @@ class ArticleController extends AbstractController
     public function comment()
     {
         $em = $this->getDoctrine()->getManager();
-        if($_SERVER['REQUEST_METHOD'] === "POST"){
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $article = $this->repo->find($_POST['article_id']);
             $comment = new Comment;
             $comment->setArticle($article);
@@ -100,7 +113,8 @@ class ArticleController extends AbstractController
         }
     }
 
-    private function getCategories(){
+    private function getCategories()
+    {
         return $this->categoryRepository->findAll();
     }
 }

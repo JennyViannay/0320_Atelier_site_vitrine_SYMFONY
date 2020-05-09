@@ -12,11 +12,11 @@
                 <p class="my-2">{{article.content}}</p>
                 <small>
                     {% for tag in article.tags %}
-                    #{{tag.name}} -
+                    <a href="/tag/{{article.tag.id}}">#{{tag.name}}</a> -
                     {% endfor %}
                 </small>
                 <hr>
-                <p class="float-left mb-0"><small>- {{article.category}} -</small></p>
+                <p class="float-left mb-0"><a href="/category/{{article.category.id}}"><small>- {{article.category}} -</small></a></p>
                 <p class="float-right mb-0"><small>- {{article.createdAt|date('d/m/Y')}} -</small></p>
             </div>
         </div>
@@ -24,11 +24,11 @@
     <div class="col-12 comment mt-5">
         {% for comment in article.comments %}
         {% if comment.isValidated == true %}
-            <div class="text-justify m-1 p-1 border">
-                <p class="font-weight-bold">@{{comment.name}}, write : </p>
-                <p class="font-italic">{{comment.content}}</p>
-                <p class="font-italic">{{comment.createdAt|date('d/m/Y')}}</p>
-            </div>
+        <div class="text-justify m-1 p-1 border">
+            <p class="font-weight-bold">@{{comment.name}}, write : </p>
+            <p class="font-italic">{{comment.content}}</p>
+            <p class="font-italic">{{comment.createdAt|date('d/m/Y')}}</p>
+        </div>
         {% endif %}
         {% endfor %}
     </div>
