@@ -4,3 +4,4 @@ easy_admin:
        - App\Entity\Category
        - App\Entity\Tag
        - App\Entity\Comment
+       - App\Entity\Contact
