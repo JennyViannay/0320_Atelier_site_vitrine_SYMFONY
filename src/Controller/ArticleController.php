@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Tag;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\CommentRepository;
 use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -75,6 +77,26 @@ class ArticleController extends AbstractController
                 'categs' => $this->getCategories(),
                 'articles' => $articles
             ]);
+        }
+    }
+
+    /**
+     * @Route("/comment", name="send-comment")
+     */
+    public function comment()
+    {
+        $em = $this->getDoctrine()->getManager();
+        if($_SERVER['REQUEST_METHOD'] === "POST"){
+            $article = $this->repo->find($_POST['article_id']);
+            $comment = new Comment;
+            $comment->setArticle($article);
+            $comment->setContent($_POST['content']);
+            $comment->setName($_POST['name']);
+            $article->addComment($comment);
+            $em->persist($comment);
+            $em->persist($article);
+            $em->flush();
+            return $this->redirectToRoute('articles');
         }
     }
 

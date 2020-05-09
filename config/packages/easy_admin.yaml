@@ -3,3 +3,4 @@ easy_admin:
        - App\Entity\Article
        - App\Entity\Category
        - App\Entity\Tag
+       - App\Entity\Comment
