@@ -12,7 +12,7 @@
                 <p class="my-2">{{article.content}}</p>
                 <small>
                     {% for tag in article.tags %}
-                    <a href="/tag/{{article.tag.id}}">#{{tag.name}}</a> -
+                    <a href="/tag/{{tag.id}}">#{{tag.name}}</a> -
                     {% endfor %}
                 </small>
                 <hr>
