@@ -24,7 +24,6 @@
                     <p class="float-right mb-0"><small>- {{article.createdAt|date('d/m/Y')}} -</small></p>
                 </div>
             </div>
-
         </div>
         <div class="col-12 comment mt-5">
             {% for comment in article.comments %}
@@ -38,11 +37,11 @@
             {% endfor %}
         </div>
         <div class="col-12 text-right mt-5">
-            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#sendMessage">
+            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#sendMessage{{article.id}}">
                 Write comment
             </button>
             <!-- Modal -->
-            <div class="modal fade" id="sendMessage" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade" id="sendMessage{{article.id}}" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
