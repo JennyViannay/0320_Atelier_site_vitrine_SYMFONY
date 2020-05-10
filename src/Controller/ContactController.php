@@ -3,26 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
-use App\Repository\CategoryRepository;
 use App\Form\ContactType;
+use App\Service\GetCategorieService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
-    /* INJECTION DE DEPENDANCE*/
-    private $categoryRepository;
-
-    public function __construct(CategoryRepository $categoryRepository)
-    {
-        $this->categoryRepository = $categoryRepository;
-    }
-
+    
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request)
+    public function index(Request $request, GetCategorieService $getCategorieService)
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -42,12 +35,7 @@ class ContactController extends AbstractController
         }
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
-            'categs' => $this->getCategories()
+            'categs' => $getCategorieService->categorie()
         ]);
-    }
-
-    private function getCategories()
-    {
-        return $this->categoryRepository->findAll();
     }
 }
