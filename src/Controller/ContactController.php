@@ -4,7 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Service\GetCategorieService;
+use App\Repository\CategoryRepository;
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,7 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(Request $request, GetCategorieService $getCategorieService)
+    public function index(Request $request, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -35,7 +36,8 @@ class ContactController extends AbstractController
         }
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
-            'categs' => $getCategorieService->categorie()
+            'categs' => $categoryRepository->findAll(),
+            'tags' => $tagRepository->findAll()
         ]);
     }
 }

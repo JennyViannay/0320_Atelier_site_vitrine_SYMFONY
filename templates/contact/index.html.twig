@@ -1,38 +1,40 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container my-5">
+<div class="container">
     <div class="row">
-        <div class="col-2"></div>
-        <div class="col-8 border py-5">
-            <div class="text-center">
-                <h1>CONTACT</h1>
-            </div>
-            <div class="col-12">
-                {{ form_start(form) }}
-                {{ form_label(form.firstname) }}
-                {{ form_widget(form.firstname, { 
-                        "attr": {"class": "form-control my-2" }
-                }) }}
-                {{ form_label(form.lastname) }}
-                {{ form_widget(form.lastname, { 
-                        "attr": {"class": "form-control my-2" }
-                }) }}
-                {{ form_label(form.email) }}
-                {{ form_widget(form.email, { 
-                        "attr": {"class": "form-control my-2" }
-                }) }}
-                {{ form_label(form.subject) }}
-                {{ form_widget(form.subject, { "attr": {"class": "form-control my-2"} }) }}
-                {{ form_label(form.content) }}
-                {{ form_widget(form.content, { "attr": {"class": "form-control my-2"} }) }}
-                <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary btn-sm my-4">Send</button>
+        <di class="col-3"></di>
+        <!-- Blog Entries Column -->
+        <div class="col-md-6">
+            <h1 class="my-4">CONTACT ME.
+                <small>Or die...</small>
+            </h1>
+            <div class="card mb-4">
+                <div class="card-body bg-darkness">
+                    <div class="col-12">
+                        {{ form_start(form) }}
+                        {{ form_widget(form.firstname, { 
+                                        "attr": {"class": "form-control my-2", "placeholder": "Firstname"}
+                                }) }}
+                        {{ form_widget(form.lastname, { 
+                                        "attr": {"class": "form-control my-2", "placeholder": "Lastname"}
+                                }) }}
+                        {{ form_widget(form.email, { 
+                                        "attr": {"class": "form-control my-2",  "placeholder": "Email"}
+                                }) }}
+                        {{ form_widget(form.subject, { "attr": {"class": "form-control my-2", "placeholder": "Subject"} }) }}
+                        {{ form_widget(form.content, { "attr": {"class": "form-control my-2", "placeholder": "Message :"} }) }}
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-outline-danger my-4">Sorry Baby</button>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
                 </div>
-                {{ form_end(form) }}
             </div>
         </div>
-        <div class="col-2"></div>
+        <div class="col-3"></div>
     </div>
+    <!-- /.row -->
 </div>
+<!-- /.container -->
 {% endblock %}

@@ -1,22 +1,18 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheets %}
+<link rel="stylesheet" href="{{asset('assets/about.css')}}">
+{% endblock %}
 {% block body %}
-<div class="container my-5">
-    <div class="jumbotron">
-        <div class="row mt-5">
-            <div class="media">
-                <img src="https://via.placeholder.com/150" class="mr-3" alt="...">
-                <div class="media-body">
-                    <h5 class="mt-0">About Author ?</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div>
-        </div>
-        <div class="text-center">
-            <a href="/contact" class="btn btn-sm btn-primary">CONTACT</a>
-        </div>
+<div class="my-5"></div>
+<div class="profile">
+    <h1> Villanelle</h1>
+    <div class="infoHolder">
+        <h2>Confirmed Assassin</h2>
+        <p>A villanelle is a poetic form with nineteen lines and a strict pattern of repetition and a rhyme scheme. Each villanelle is comprised of five tercets (i.e., a three-line stanza) followed by one quatrain (a stanza with four lines). The first and third lines of the opening tercet are repeated in an alternating pattern as the final line of each next tercet; those two repeated lines then form the final two lines of the entire poem. The rhyme scheme calls for those repeating lines to rhyme, and for the second line of every tercet to rhyme. </p>
+    </div>
+
+    <div class="imageHolder"><img class="profilePic"
+            src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/screen-shot-2019-04-08-at-12-42-55-1554723793.png?crop=0.578xw:0.969xh;0.301xw,0.0313xh&resize=480:*">
     </div>
 </div>
 {% endblock %}

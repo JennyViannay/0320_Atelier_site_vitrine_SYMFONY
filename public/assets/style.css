@@ -1,8 +1,56 @@
+h1, h2, h3, h4, h5, h6, .title, .btn, footer {
+    font-family: 'Anton', sans-serif;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.bg-darkness{
+    background-color: black;
+}
+
 a {
     text-decoration: none;
     color: black;
 }
 
+a:hover {
+    color: #ef1254;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #ef1254;
+}
+
+.navbar-dark .navbar-brand:focus, .navbar-dark .navbar-brand:hover {
+    color: #ef1254;
+}
+
+.btn-outline-danger{
+    color: #ef1254;
+    border-color:  #ef1254;
+}
+
+.btn-outline-danger:hover{
+    color: #fff;
+    background-color:  #ef1254;
+    border-color:  #ef1254;
+}
+
+.navbar {
+    font-family: 'Anton', sans-serif;
+}
+
 .comment{
     font-size: 12px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+}
+
+.card-post-img{
+    height: 300px;
 }

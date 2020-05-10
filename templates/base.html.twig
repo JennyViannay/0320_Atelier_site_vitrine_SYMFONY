@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Bullshit & Sentiments{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('assets/style.css')}}">
@@ -11,27 +14,17 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-darkness">
         <a class="navbar-brand" href="/">B&S</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             {% if app.request.pathinfo != "/login" %}
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        ARTICLES
-                    </a>
-                    <div class="dropdown-menu text-dark" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/articles">ALL</a>
-                        {% for categ in categs %}
-                        <a class="dropdown-item" href="/category/{{categ.id}}">{{categ.name|upper}}</a>
-                        {% endfor %}
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="/articles" tabindex="-1">ARTICLES</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/about" tabindex="-1">ABOUT ME</a>
@@ -43,13 +36,20 @@
             <form class="form-inline my-2 my-lg-0" method="POST" action="{{ path('search-tag') }}">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
                     name="search">
-                <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
             </form>
             {% endif %}
         </div>
     </nav>
     {% block body %}{% endblock %}
     <div class="my-5"></div>
+    <!-- Footer -->
+    <footer class="py-3 bg-darkness fixed-bottom">
+        <div class="container">
+            <p class="m-0 text-center text-white">Made With LOL &copy; Jenny Thug Life 2020</p>
+        </div>
+        <!-- /.container -->
+    </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
         crossorigin="anonymous"></script>
