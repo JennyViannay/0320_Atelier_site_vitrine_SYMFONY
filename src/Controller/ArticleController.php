@@ -99,7 +99,7 @@ class ArticleController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            $article = $this->repo->find($_POST['article_id']);
+            $article = $this->articleRepository->find($_POST['article_id']);
             $comment = new Comment;
             $comment->setArticle($article);
             $comment->setContent($_POST['content']);
