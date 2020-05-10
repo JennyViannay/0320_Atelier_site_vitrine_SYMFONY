@@ -14,16 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-    /* INJECTION DE DEPENDANCE*/
-    private $repo;
+    private $articleRepository;
     private $categoryRepository;
     private $tagRepository;
 
-    public function __construct(ArticleRepository $repo, CategoryRepository $categoryRepository, TagRepository $tagRepository)
+    public function __construct(ArticleRepository $articleRepository, CategoryRepository $categoryRepository, TagRepository $tagRepository)
     {
         $this->categoryRepository = $categoryRepository;
         $this->tagRepository = $tagRepository;
-        $this->repo = $repo;
+        $this->articleRepository = $articleRepository;
     }
 
     /**
@@ -31,10 +30,10 @@ class ArticleController extends AbstractController
      */
     public function index()
     {
-        $articles = $this->repo->findAll();
         return $this->render('article/index.html.twig', [
-            'categs' => $this->getCategories(),
-            'articles' => $articles,
+            'categs' => $this->categoryRepository->findAll(),
+            'tags' => $this->tagRepository->findAll(),
+            'articles' => $this->articleRepository->findAll()
         ]);
     }
 
@@ -44,8 +43,9 @@ class ArticleController extends AbstractController
     public function show(Article $article)
     {
         return $this->render('article/read.html.twig', [
-            'article' => $this->repo->find($article),
-            'categs' => $this->getCategories(),
+            'categs' => $this->categoryRepository->findAll(),
+            'tags' => $this->tagRepository->findAll(),
+            'article' => $this->articleRepository->find($article)
         ]);
     }
 
@@ -54,10 +54,10 @@ class ArticleController extends AbstractController
      */
     public function getArticleByCategory(Category $category)
     {
-        $articles = $this->repo->findBy(['category' => $category]);
         return $this->render('article/index.html.twig', [
-            'categs' => $this->getCategories(),
-            'articles' => $articles
+            'categs' => $this->categoryRepository->findAll(),
+            'tags' => $this->tagRepository->findAll(),
+            'articles' => $category->getArticles()
         ]);
     }
 
@@ -66,11 +66,10 @@ class ArticleController extends AbstractController
      */
     public function getArticleByTag(Tag $tag)
     {
-        $articles = $tag->getArticles();
-        
         return $this->render('article/index.html.twig', [
-            'categs' => $this->getCategories(),
-            'articles' => $articles
+            'categs' => $this->categoryRepository->findAll(),
+            'tags' => $this->tagRepository->findAll(),
+            'articles' => $tag->getArticles()
         ]);
     }
 
@@ -86,7 +85,8 @@ class ArticleController extends AbstractController
                 $articles = $tag->getArticles();
             }
             return $this->render('article/index.html.twig', [
-                'categs' => $this->getCategories(),
+                'categs' => $this->categoryRepository->findAll(),
+                'tags' => $this->tagRepository->findAll(),
                 'articles' => $articles
             ]);
         }
@@ -110,10 +110,5 @@ class ArticleController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('articles');
         }
-    }
-
-    private function getCategories()
-    {
-        return $this->categoryRepository->findAll();
     }
 }

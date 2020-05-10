@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Service\GetCategorieService;
+use App\Repository\CategoryRepository;
+use App\Repository\TagRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -11,10 +12,11 @@ class AboutMeController extends AbstractController
     /**
      * @Route("/about", name="about_me")
      */
-    public function index(GetCategorieService $getCategorieService)
+    public function index(CategoryRepository $categorie, TagRepository $tags)
     {
         return $this->render('about_me/index.html.twig', [
-            'categs' => $getCategorieService->categorie()
+            'categs' => $categorie->findAll(),
+            'tags' => $tags->findAll()
         ]);
     }
 }

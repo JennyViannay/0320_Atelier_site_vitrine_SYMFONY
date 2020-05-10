@@ -1,0 +1,20 @@
+/* FONTS 
+
+Title : font-family: 'Anton', sans-serif;
+SsTitle / Resume : font-family: 'Oswald', sans-serif;
+text : font-family: 'Lato', sans-serif;
+*/
+
+body, a {
+    font-family: 'Anton', sans-serif;
+    background: url('https://virginradio.ro/wp-content/uploads/2020/02/Killing-Eve.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.row {
+    font-family: 'Oswald', sans-serif;
+    color: #ef1254;
+}
