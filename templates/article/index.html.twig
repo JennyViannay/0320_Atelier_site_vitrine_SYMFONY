@@ -52,7 +52,7 @@
                             <ul class="list-unstyled mb-0">
                                 {% for categ in categs|slice(0,4)  %}
                                 <li>
-                                    <a href="/category/{{categ.id}}">{{categ.name|capitalize}}</a>
+                                    <a href="/category/{{categ.id}}" class="badge badge-primary">{{categ.name|capitalize}}</a>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -61,7 +61,7 @@
                             <ul class="list-unstyled mb-0">
                                 {% for categ in categs|slice(5,10)  %}
                                 <li>
-                                    <a href="/category/{{categ.id}}">{{categ.name|capitalize}}</a>
+                                    <a href="/category/{{categ.id}}" class="badge badge-primary">{{categ.name|capitalize}}</a>
                                 </li>
                                 {% endfor %}
                             </ul>
@@ -74,7 +74,7 @@
                 <h5 class="card-header">Tags</h5>
                 <div class="card-body bg-light">
                     {% for tag in tags %}
-                    <a href="/tag/{{tag.id}}">#{{tag.name}}</a> -
+                    <a href="/tag/{{tag.id}}" class="badge badge-danger">#{{tag.name}}</a>
                     {% endfor %}
                 </div>
             </div>
