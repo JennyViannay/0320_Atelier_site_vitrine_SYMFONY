@@ -1,0 +1,18 @@
+easy_admin:
+   entities:
+       Article:
+            class: App\Entity\Article
+            list: 
+                fields: ['id', 'title', 'created_at', 'category', 'tags', 'comments']
+       Category:
+            class: App\Entity\Category 
+       Tag:
+            class: App\Entity\Tag
+       Comment:
+            class: App\Entity\Comment
+            list: 
+                fields: ['id', 'content', 'created_at', 'is_validated', 'article']
+       Contact:
+            class: App\Entity\Contact
+            list: 
+                fields: ['id', 'subject', 'content', 'email', 'created_at']
