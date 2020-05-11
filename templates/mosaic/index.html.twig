@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+<style>
+    body {
+        background-color: black;
+    }
+    .main {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-gap: 1rem;
+    }
+
+    .tile img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .tile:nth-child(1) {
+        grid-column: span 4;
+        grid-row: span 2;
+    }
+
+    .tile:nth-child(2),
+    .tile:nth-child(3) {
+        grid-column: span 2;
+    }
+
+    .tile:nth-child(4),
+    .tile:nth-child(5) {
+        grid-column: span 3;
+    }
+
+    @media screen and (max-width: 650px) {
+        .main {
+            display: block;
+        }
+
+        .tile {
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="main my-5">
+    <div class="tile">
+        <img
+        src="https://imgr.cineserie.com/2020/04/killing-eve-760x510@2x.jpg?imgeng=/f_jpg/cmpr_0/w_1140/h_630/m_cropbox&ver=1">
+    </div>
+    <div class="tile">
+        <img src="https://i.ytimg.com/vi/SdtvKJDEDJc/maxresdefault.jpg">
+    </div>
+    <div class="tile">
+        <img
+        src="https://thumb.canalplus.pro/http/unsafe/%7BresolutionXY%7D/smart/creativemedia-image.canalplus.pro/content/0001/25/fdc50f5661bf7b76b2b1d7a69b7b9c0b41b66bf6.jpeg">
+    </div>
+    
+</div>
+{% endblock %}
